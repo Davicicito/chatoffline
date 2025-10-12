@@ -6,27 +6,32 @@ import java.time.LocalDateTime;
 
 @XmlRootElement(name = "mensaje")
 public class Mensaje {
+
     private String remitente;
     private String destinatario;
     private String contenido;
-    private LocalDateTime fechaEnvio;
-    private Adjunto adjunto;
+    private String fecha;     // fecha guardada como texto (simple y efectivo)
+    private Adjunto adjunto;  // puede ser null si no hay archivo
 
-
-    public Mensaje() { // Constructor vacío para JAXB
+    public Mensaje() {
+        // Constructor vacío requerido por JAXB
     }
 
-    public Mensaje(String remitente, String destinatario, String contenido, LocalDateTime fechaEnvio, Adjunto adjunto) {
+    public Mensaje(String remitente, String destinatario, String contenido, Adjunto adjunto) {
         this.remitente = remitente;
         this.destinatario = destinatario;
         this.contenido = contenido;
-        this.fechaEnvio = fechaEnvio;
+        java.time.format.DateTimeFormatter formato =
+                java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        this.fecha = java.time.LocalDateTime.now().format(formato); // guarda la fecha actual como texto
         this.adjunto = adjunto;
     }
+
     @XmlElement
     public String getRemitente() {
         return remitente;
     }
+
     public void setRemitente(String remitente) {
         this.remitente = remitente;
     }
@@ -44,29 +49,35 @@ public class Mensaje {
     public String getContenido() {
         return contenido;
     }
+
     public void setContenido(String contenido) {
         this.contenido = contenido;
     }
 
     @XmlElement
-    public LocalDateTime getFechaEnvio() {
-        return fechaEnvio;
+    public String getFecha() {
+        return fecha;
     }
-    public void setFechaEnvio(LocalDateTime fechaEnvio) {
-        this.fechaEnvio = fechaEnvio;
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
     }
 
     @XmlElement
     public Adjunto getAdjunto() {
         return adjunto;
     }
+
     public void setAdjunto(Adjunto adjunto) {
         this.adjunto = adjunto;
     }
 
     @Override
     public String toString() {
-        return "Mensaje [remitente=" + remitente + ", destinatario=" + destinatario + ", contenido=" + contenido
-                + ", fechaEnvio=" + fechaEnvio + ", adjunto=" + adjunto.getNombreArchivo() + "]";
+        String texto = "[" + fecha + "] " + remitente + " → " + destinatario + ": " + contenido;
+        if (adjunto != null) {
+            texto += " [Adjunto: " + adjunto.getNombreArchivo() + "]";
+        }
+        return texto;
     }
 }

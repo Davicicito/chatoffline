@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<conversacion>
+    <mensaje>
+        <contenido>Hola Maria</contenido>
+        <destinatario>Maria</destinatario>
+        <fecha>12/10/2025 18:41</fecha>
+        <remitente>Antonio</remitente>
+    </mensaje>
+    <mensaje>
+        <contenido>Hola Antonio</contenido>
+        <destinatario>Antonio</destinatario>
+        <fecha>12/10/2025 18:41</fecha>
+        <remitente>Maria</remitente>
+    </mensaje>
+    <mensaje>
+        <contenido>Como estas?</contenido>
+        <destinatario>Maria</destinatario>
+        <fecha>12/10/2025 18:41</fecha>
+        <remitente>Antonio</remitente>
+    </mensaje>
+</conversacion>
