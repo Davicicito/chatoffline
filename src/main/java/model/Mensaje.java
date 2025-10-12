@@ -67,6 +67,6 @@ public class Mensaje {
     @Override
     public String toString() {
         return "Mensaje [remitente=" + remitente + ", destinatario=" + destinatario + ", contenido=" + contenido
-                + ", fechaEnvio=" + fechaEnvio + ", adjunto=" + adjunto + "]";
+                + ", fechaEnvio=" + fechaEnvio + ", adjunto=" + adjunto.getNombreArchivo() + "]";
     }
 }
