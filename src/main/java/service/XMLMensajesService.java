@@ -1,4 +1,4 @@
-package Service;
+package service;
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.Marshaller;
 import jakarta.xml.bind.Unmarshaller;
@@ -6,6 +6,7 @@ import model.Conversacion;
 import model.Mensaje;
 
 import java.io.File;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 public class XMLMensajesService {
@@ -48,6 +49,7 @@ public class XMLMensajesService {
                         (m.getRemitente().equalsIgnoreCase(usuario1) && m.getDestinatario().equalsIgnoreCase(usuario2)) ||
                                 (m.getRemitente().equalsIgnoreCase(usuario2) && m.getDestinatario().equalsIgnoreCase(usuario1))
                 )
+                .sorted(Comparator.comparing(Mensaje::getFecha))
                 .collect(Collectors.toList());
         if(mensajesFiltrados.isEmpty()){
             System.out.println("No hay mensajes entre " + usuario1 + " y " + usuario2);
@@ -56,6 +58,17 @@ public class XMLMensajesService {
 
         System.out.println("Conversación entre " + usuario1 + " y " + usuario2 + ":");
         for(Mensaje m : mensajesFiltrados){
+            System.out.println(m);
+        }
+    }
+    public void mostrarTodasLasConversaciones(){
+        Conversacion conversacion = cargarConversacion();
+        if (conversacion.getMensajes().isEmpty()){
+            System.out.println("No hay mensajes en la conversacion");
+            return;
+        }
+        System.out.println("Todas las conversaciones guardadas");
+        for(Mensaje m : conversacion.getMensajes()){
             System.out.println(m);
         }
     }

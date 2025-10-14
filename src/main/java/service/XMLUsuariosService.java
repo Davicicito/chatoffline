@@ -1,4 +1,4 @@
-package Service;
+package service;
 
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.Marshaller;

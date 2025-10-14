@@ -1,7 +1,4 @@
-import Service.XMLMensajesService;
-import Service.XMLUsuariosService;
-import model.Mensaje;
-import model.Usuario;
+import service.StreamService;
 
 public class Main {
     public static void main(String[] args) {
@@ -10,14 +7,17 @@ public class Main {
         servicio.registrarUsuario(new Usuario("Maria", "maria@gmail.com"));
 
         servicio.registrarUsuario(new Usuario("Maria", "maria@gmail.com"));*/
-
-        XMLMensajesService chat= new XMLMensajesService();
-        chat.enviarMensaje(new Mensaje("Antonio","Maria","Hola Maria",null));
-        chat.enviarMensaje(new Mensaje("Maria","Antonio","Hola Antonio",null));
-        chat.enviarMensaje(new Mensaje("Antonio","Maria","Como estas?",null));
-
-
-        chat.mostrarConversacion("Antonio","Maria");
+//
+//        XMLMensajesService chat= new XMLMensajesService();
+//        chat.enviarMensaje(new Mensaje("Antonio","Maria","Hola Maria",null));
+//        chat.enviarMensaje(new Mensaje("Maria","Antonio","Hola Antonio",null));
+//        chat.enviarMensaje(new Mensaje("Antonio","Maria","Como estas?",null));
+//
+//        chat.mostrarConversacion("Antonio","Maria");
+//
+//        chat.mostrarTodasLasConversaciones();
+        StreamService resumen = new StreamService();
+        resumen.mostrarConversacion("Antonio","Maria");
 
     }
 }
