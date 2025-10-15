@@ -79,8 +79,18 @@
                     <mainClass>chat.Main</mainClass>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <groupId>org.openjfx</groupId>
+                <artifactId>javafx-maven-plugin</artifactId>
+                <version>0.0.8</version>
+                <configuration>
+                    <mainClass>java.App</mainClass>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
+
 
 </project>
 

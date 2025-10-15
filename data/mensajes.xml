@@ -18,4 +18,15 @@
         <fecha>14/10/2025 08:50</fecha>
         <remitente>Antonio</remitente>
     </mensaje>
+    <mensaje>
+        <adjunto>
+            <nombre>GdBvJr0WwAA5U9l.png</nombre>
+            <ruta>C:\Users\david\Desktop\chatoffline\media\GdBvJr0WwAA5U9l.png</ruta>
+            <tipo>imagen</tipo>
+        </adjunto>
+        <contenido>Te envío la foto.</contenido>
+        <destinatario>Maria</destinatario>
+        <fecha>15/10/2025 11:32</fecha>
+        <remitente>Antonio</remitente>
+    </mensaje>
 </conversacion>

@@ -4,53 +4,36 @@ import jakarta.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "adjunto")
 public class Adjunto {
-    private String nombreArchivo;
-    private String rutaArchivo;
-    private long tamañoArchivo;
-    private String tipoArchivo;
 
-    public Adjunto() { // Constructor vacío para JAXB
-    }
+    private String nombre; // nombre del archivo
+    private String ruta;   // ubicación dentro de /media/
+    private String tipo;   // tipo de archivo (imagen, pdf, etc.)
 
-    public Adjunto(String nombreArchivo, String rutaArchivo, long tamañoArchivo, String tipoArchivo) {
-        this.nombreArchivo = nombreArchivo;
-        this.rutaArchivo = rutaArchivo;
-        this.tamañoArchivo = tamañoArchivo;
-        this.tipoArchivo = tipoArchivo;
+    public Adjunto() {}
+
+    public Adjunto(String nombre, String ruta, String tipo) {
+        this.nombre = nombre;
+        this.ruta = ruta;
+        this.tipo = tipo;
     }
 
     @XmlElement
-    public String getNombreArchivo() {
-        return nombreArchivo;
-    }
-    public void setNombreArchivo(String nombreArchivo) {
-        this.nombreArchivo = nombreArchivo;
-    }
+    public String getNombre() { return nombre; }
+
+    public void setNombre(String nombre) { this.nombre = nombre; }
+
     @XmlElement
-    public String getRutaArchivo() {
-        return rutaArchivo;
-    }
-    public void setRutaArchivo(String rutaArchivo) {
-        this.rutaArchivo = rutaArchivo;
-    }
+    public String getRuta() { return ruta; }
+
+    public void setRuta(String ruta) { this.ruta = ruta; }
+
     @XmlElement
-    public long getTamañoArchivo() {
-        return tamañoArchivo;
-    }
-    public void setTamañoArchivo(long tamañoArchivo) {
-        this.tamañoArchivo = tamañoArchivo;
-    }
-    @XmlElement
-    public String getTipoArchivo() {
-        return tipoArchivo;
-    }
-    public void setTipoArchivo(String tipoArchivo) {
-        this.tipoArchivo = tipoArchivo;
-    }
+    public String getTipo() { return tipo; }
+
+    public void setTipo(String tipo) { this.tipo = tipo; }
 
     @Override
     public String toString() {
-        return nombreArchivo + " (" + tipoArchivo + ", " + tamañoArchivo + " bytes)";
+        return nombre + " (" + tipo + ")";
     }
-
 }

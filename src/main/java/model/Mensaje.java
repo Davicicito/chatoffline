@@ -76,7 +76,7 @@ public class Mensaje {
     public String toString() {
         String texto = "[" + fecha + "] " + remitente + " → " + destinatario + ": " + contenido;
         if (adjunto != null) {
-            texto += " [Adjunto: " + adjunto.getNombreArchivo() + "]";
+            texto += " [Adjunto: " + adjunto.getNombre() + "]";
         }
         return texto;
     }
