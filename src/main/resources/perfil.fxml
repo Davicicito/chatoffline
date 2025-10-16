@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controllers.PerfilController"
+            style="-fx-background-color: #ECE5DD;">
+
+    <center>
+        <VBox alignment="CENTER" spacing="10" padding="20">
+            <Label text="👤 Perfil de usuario"
+                   style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #075E54;"/>
+            <Label fx:id="lblNombre" text="Nombre: "/>
+            <Label fx:id="lblEmail" text="Email: "/>
+            <Button text="⬅ Volver al chat" onAction="#volverChat"
+                    style="-fx-background-color: #25D366; -fx-text-fill: white; -fx-font-weight: bold;"/>
+        </VBox>
+    </center>
+</BorderPane>

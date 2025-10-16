@@ -2,7 +2,6 @@ package model;
 
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
-import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlRootElement;
 
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -10,33 +9,28 @@ import jakarta.xml.bind.annotation.XmlRootElement;
 public class Usuario {
     private String nombre;
     private String email;
+    private String contraseña;
 
-    public Usuario() {          // Constructor vacío para JAXB
-    }
+    public Usuario() {}
 
-    public Usuario(String nombre, String email) {
+    public Usuario(String nombre, String email, String contraseña) {
         this.nombre = nombre;
         this.email = email;
+        this.contraseña = contraseña;
     }
 
-    @XmlElement(name = "nombre")
-    public String getNombre() {
-        return nombre;
-    }
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
+    public String getNombre() { return nombre; }
+    public void setNombre(String nombre) { this.nombre = nombre; }
 
-    @XmlElement(name = "email")
-    public String getEmail() {
-        return email;
-    }
-    public void setEmail(String email) {
-        this.email = email;
-    }
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
+
+    public String getContraseña() { return contraseña; }
+    public void setContraseña(String contrasena) { this.contraseña = contrasena; }
 
     @Override
     public String toString() {
-        return "Usuario [nombre=" + nombre + ", email=" + email + "]";
+        return nombre + " (" + email + ")";
     }
 }
+

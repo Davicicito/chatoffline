@@ -16,6 +16,7 @@
             <Label text="Registro de usuario" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #075E54;"/>
             <TextField fx:id="txtNombre" promptText="Nombre de usuario" prefWidth="200"/>
             <TextField fx:id="txtEmail" promptText="Correo electrónico" prefWidth="200"/>
+            <PasswordField fx:id="txtContraseña" promptText="Contraseña" prefWidth="200"/>
             <Button text="Registrar" onAction="#registrarUsuario"
                     style="-fx-background-color: #25D366; -fx-text-fill: white; -fx-font-weight: bold;"/>
             <Hyperlink text="⬅ Volver al inicio de sesión" onAction="#volverLogin"/>
@@ -23,4 +24,3 @@
         </VBox>
     </center>
 </BorderPane>
-

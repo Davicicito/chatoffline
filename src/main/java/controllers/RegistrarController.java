@@ -6,12 +6,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import model.Usuario;
 import service.XMLUsuariosService;
 
 import java.io.IOException;
 public class RegistrarController {
     @FXML private TextField txtNombre;
     @FXML private TextField txtEmail;
+    @FXML private PasswordField txtContraseña; // Campo añadido
     @FXML private Label lblMensaje;
 
     private final XMLUsuariosService servicioUsuarios = new XMLUsuariosService();
@@ -20,16 +22,19 @@ public class RegistrarController {
     private void registrarUsuario(ActionEvent event) {
         String nombre = txtNombre.getText().trim();
         String email = txtEmail.getText().trim();
+        String contraseña = txtContraseña.getText().trim(); // Campo añadido
 
-        if (nombre.isEmpty() || email.isEmpty()) {
+        if (nombre.isEmpty() || email.isEmpty() || contraseña.isEmpty()) {
             lblMensaje.setText("Rellena todos los campos.");
             return;
         }
 
-        if (servicioUsuarios.registrarUsuario(nombre, email)) {
+        Usuario nuevoUsuario = new Usuario(nombre, email, contraseña);
+
+        if (servicioUsuarios.registrarUsuario(nuevoUsuario)) {
             lblMensaje.setText("Usuario registrado correctamente.");
         } else {
-            lblMensaje.setText("Ese usuario ya existe.");
+            lblMensaje.setText("Ese usuario o email ya existe.");
         }
     }
 
@@ -45,4 +50,3 @@ public class RegistrarController {
         }
     }
 }
-

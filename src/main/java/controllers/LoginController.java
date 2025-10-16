@@ -15,6 +15,7 @@ public class LoginController {
 
     @FXML private TextField txtUsuario;
     @FXML private TextField txtEmail;
+    @FXML private PasswordField txtContraseña; // Campo añadido
     @FXML private Label lblMensaje;
 
     private final XMLUsuariosService servicioUsuarios = new XMLUsuariosService();
@@ -23,21 +24,43 @@ public class LoginController {
     private void iniciarSesion(ActionEvent event) {
         String nombre = txtUsuario.getText().trim();
         String email = txtEmail.getText().trim();
+        String contraseña = txtContraseña.getText().trim(); // Campo añadido
 
-        if (nombre.isEmpty() || email.isEmpty()) {
+        if (nombre.isEmpty() || email.isEmpty() || contraseña.isEmpty()) {
             lblMensaje.setText("Rellena todos los campos.");
             return;
         }
 
         Usuario usuario = servicioUsuarios.buscarUsuario(nombre, email);
         if (usuario == null) {
-            lblMensaje.setText("Usuario no encontrado.");
+            lblMensaje.setText("Usuario o email incorrecto.");
             return;
         }
 
-        // Aquí abrirías la pantalla principal del chat
-        lblMensaje.setText("Inicio de sesión correcto.");
+        // Comprobación de la contraseña
+        if (!usuario.getContraseña().equals(contraseña)) {
+            lblMensaje.setText("Contraseña incorrecta.");
+            return;
+        }
+
+        // ✅ Inicio de sesión correcto → guardar usuario en sesión y abrir pantalla principal
+        try {
+            util.Session.setCurrentUser(usuario); // guardamos el usuario activo
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/mainchat.fxml"));
+            Scene scene = new Scene(loader.load());
+
+            Stage stage = (Stage) txtUsuario.getScene().getWindow();
+            stage.setScene(scene);
+            stage.setTitle("Chat Offline XML");
+            stage.show();
+
+        } catch (IOException e) {
+            lblMensaje.setText("Error al abrir la pantalla del chat.");
+            e.printStackTrace();
+        }
     }
+
 
     @FXML
     private void abrirRegistro(ActionEvent event) {

@@ -1,14 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
+<BorderPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="controllers.MainChatController"
-            prefHeight="400.0" prefWidth="600.0">
+            style="-fx-background-color: #ECE5DD;">
 
-</AnchorPane>
+    <!-- Barra superior -->
+    <top>
+        <HBox spacing="10" style="-fx-background-color: #075E54; -fx-alignment: center-left;">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+            <Label fx:id="lblUsuario" text="Usuario"
+                   style="-fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button text="Perfil" onAction="#abrirPerfil"
+                    style="-fx-background-color: #25D366; -fx-text-fill: white; -fx-font-weight: bold;"/>
+        </HBox>
+    </top>
+
+    <!-- Lista de contactos -->
+    <left>
+        <VBox spacing="5"  style="-fx-background-color: #F6F6F6;" prefWidth="200">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+            <Label text="Chats" style="-fx-font-weight: bold;"/>
+            <ListView fx:id="listaContactos" prefHeight="600"/>
+        </VBox>
+    </left>
+
+    <!-- Zona central -->
+    <center>
+        <VBox alignment="CENTER" spacing="10">
+            <Label text="💬 Bienvenido al Chat Offline XML"
+                   style="-fx-font-size: 18px; -fx-text-fill: #555;"/>
+            <Label text="Selecciona un chat para comenzar."
+                   style="-fx-font-size: 13px; -fx-text-fill: #777;"/>
+        </VBox>
+    </center>
+</BorderPane>
+
