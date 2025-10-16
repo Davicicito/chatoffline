@@ -1,51 +1,64 @@
 package service;
 
-import jakarta.xml.bind.JAXBContext;
-import jakarta.xml.bind.Marshaller;
-import jakarta.xml.bind.Unmarshaller;
+import jakarta.xml.bind.*;
 import model.ListaUsuarios;
 import model.Usuario;
-
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 public class XMLUsuariosService {
+
     private final File archivoUsuarios = new File("data/usuarios.xml");
 
-    public ListaUsuarios cargarUsuarios() {
+    // --- Cargar usuarios ---
+    private List<Usuario> cargarUsuarios() {
         try {
-            if (!archivoUsuarios.exists()) {
-                return new ListaUsuarios();
-            }
+            if (!archivoUsuarios.exists()) return new ArrayList<>();
 
             JAXBContext context = JAXBContext.newInstance(ListaUsuarios.class);
             Unmarshaller unmarshaller = context.createUnmarshaller();
-            return (ListaUsuarios) unmarshaller.unmarshal(archivoUsuarios);
+            ListaUsuarios lista = (ListaUsuarios) unmarshaller.unmarshal(archivoUsuarios);
+            return lista.getUsuarios();
         } catch (Exception e) {
-            System.out.println("Error al cargar usuarios desde XML: " + e.getMessage());
-            return new ListaUsuarios();
+            System.out.println("Error al cargar usuarios: " + e.getMessage());
+            return new ArrayList<>();
         }
     }
 
-    public void guardarUsuarios(ListaUsuarios lista){
+    // --- Guardar usuarios ---
+    private void guardarUsuarios(List<Usuario> usuarios) {
         try {
             JAXBContext context = JAXBContext.newInstance(ListaUsuarios.class);
             Marshaller marshaller = context.createMarshaller();
-            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-            marshaller.marshal(lista, archivoUsuarios);
+            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+            marshaller.marshal(new ListaUsuarios(usuarios), archivoUsuarios);
         } catch (Exception e) {
-            System.out.println("Error al guardar usuarios en XML: " + e.getMessage());
+            System.out.println("Error al guardar usuarios: " + e.getMessage());
         }
     }
-    public boolean registrarUsuario(Usuario nuevo){
-        ListaUsuarios lista = cargarUsuarios();
-        if(lista.existeUsurio(nuevo.getEmail())){
-            System.out.println("El usuario con email " + nuevo.getEmail() + " ya existe.");
-            return false;
+
+    // --- Registrar usuario ---
+    public boolean registrarUsuario(String nombre, String email) {
+        List<Usuario> usuarios = cargarUsuarios();
+
+        for (Usuario u : usuarios) {
+            if (u.getEmail().equalsIgnoreCase(email)) {
+                return false; // Ya existe
+            }
         }
-        lista.addUsuario(nuevo);
-        guardarUsuarios(lista);
-        System.out.println("Usuario registrado: " + nuevo);
+
+        usuarios.add(new Usuario(nombre, email));
+        guardarUsuarios(usuarios);
         return true;
     }
 
+    // --- Buscar usuario ---
+    public Usuario buscarUsuario(String nombre, String email) {
+        return cargarUsuarios().stream()
+                .filter(u -> u.getNombre().equalsIgnoreCase(nombre) && u.getEmail().equalsIgnoreCase(email))
+                .findFirst()
+                .orElse(null);
+    }
 }
+

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="controllers.LoginController"
+            style="-fx-background-color: #ECE5DD;">
+
+    <center>
+        <VBox spacing="10" alignment="CENTER">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+
+            <Label text="Chat Offline XML" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #075E54;"/>
+            <TextField fx:id="txtUsuario" promptText="Nombre de usuario" prefWidth="200"/>
+            <TextField fx:id="txtEmail" promptText="Correo electrónico" prefWidth="200"/>
+            <Button text="Iniciar sesión" onAction="#iniciarSesion"
+                    style="-fx-background-color: #25D366; -fx-text-fill: white; -fx-font-weight: bold;"/>
+            <Hyperlink text="¿No tienes cuenta? Regístrate" onAction="#abrirRegistro"/>
+            <Label fx:id="lblMensaje" textFill="red"/>
+        </VBox>
+    </center>
+</BorderPane>
+
