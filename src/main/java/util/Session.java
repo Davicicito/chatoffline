@@ -12,4 +12,8 @@ public class Session {
     public static Usuario getCurrentUser() {
         return currentUser;
     }
+
+    public static void clear() {
+        currentUser = null;
+    }
 }

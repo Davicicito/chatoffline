@@ -29,4 +29,16 @@
         <fecha>15/10/2025 11:32</fecha>
         <remitente>Antonio</remitente>
     </mensaje>
+    <mensaje>
+        <contenido>hola</contenido>
+        <destinatario>Antonio</destinatario>
+        <fecha>18/10/2025 17:20</fecha>
+        <remitente>davicicito</remitente>
+    </mensaje>
+    <mensaje>
+        <contenido>hola david que pasa</contenido>
+        <destinatario>davicicito</destinatario>
+        <fecha>18/10/2025 17:21</fecha>
+        <remitente>Antonio</remitente>
+    </mensaje>
 </conversacion>

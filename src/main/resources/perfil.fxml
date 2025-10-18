@@ -1,23 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
 
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="controllers.PerfilController"
             style="-fx-background-color: #ECE5DD;">
 
     <center>
-        <VBox alignment="CENTER" spacing="10" padding="20">
+        <VBox alignment="CENTER" spacing="15" >
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
             <Label text="👤 Perfil de usuario"
-                   style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #075E54;"/>
-            <Label fx:id="lblNombre" text="Nombre: "/>
-            <Label fx:id="lblEmail" text="Email: "/>
+                   style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #075E54;"/>
+            
+            <VBox alignment="CENTER_LEFT" spacing="5">
+                <Label fx:id="lblNombre" text="Nombre: " style="-fx-font-size: 14px;"/>
+                <Label fx:id="lblEmail" text="Email: " style="-fx-font-size: 14px;"/>
+            </VBox>
+
             <Button text="⬅ Volver al chat" onAction="#volverChat"
                     style="-fx-background-color: #25D366; -fx-text-fill: white; -fx-font-weight: bold;"/>
+            <Button text="Cerrar Sesión" onAction="#cerrarSesion"
+                    style="-fx-background-color: #FF5A5F; -fx-text-fill: white; -fx-font-weight: bold;"/>
         </VBox>
     </center>
 </BorderPane>

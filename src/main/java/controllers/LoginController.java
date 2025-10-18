@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import util.Session;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import model.Usuario;
@@ -32,31 +33,26 @@ public class LoginController {
         }
 
         Usuario usuario = servicioUsuarios.buscarUsuario(nombre, email);
-        if (usuario == null) {
-            lblMensaje.setText("Usuario o email incorrecto.");
-            return;
+        if (usuario == null || !usuario.getContraseña().equals(contraseña)) {
+            lblMensaje.setText("Usuario, email o contraseña incorrectos.");
+        return;
         }
 
-        // Comprobación de la contraseña
-        if (!usuario.getContraseña().equals(contraseña)) {
-            lblMensaje.setText("Contraseña incorrecta.");
-            return;
-        }
+        // Guardar usuario en la sesión
+        Session.setCurrentUser(usuario);
 
         // ✅ Inicio de sesión correcto → guardar usuario en sesión y abrir pantalla principal
         try {
-            util.Session.setCurrentUser(usuario); // guardamos el usuario activo
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/mainchat.fxml"));
             Scene scene = new Scene(loader.load());
 
             Stage stage = (Stage) txtUsuario.getScene().getWindow();
             stage.setScene(scene);
-            stage.setTitle("Chat Offline XML");
-            stage.show();
+            stage.setTitle("Chat - " + usuario.getNombre());
 
         } catch (IOException e) {
-            lblMensaje.setText("Error al abrir la pantalla del chat.");
+            lblMensaje.setText("Error al abrir la pantalla principal.");
             e.printStackTrace();
         }
     }

@@ -5,4 +5,19 @@
         <email>david@gmail.com</email>
         <contraseña>123456</contraseña>
     </usuario>
+    <usuario>
+        <nombre>Antonio</nombre>
+        <email>antonio@gmail.com</email>
+        <contraseña>1234</contraseña>
+    </usuario>
+    <usuario>
+        <nombre>Maria</nombre>
+        <email>maria@gmail.com</email>
+        <contraseña>abcd</contraseña>
+    </usuario>
+    <usuario>
+        <nombre>Juan</nombre>
+        <email>juanito@gmail.com</email>
+        <contraseña>4321</contraseña>
+    </usuario>
 </usuarios>
