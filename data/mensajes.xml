@@ -41,4 +41,15 @@
         <fecha>18/10/2025 17:21</fecha>
         <remitente>Antonio</remitente>
     </mensaje>
+    <mensaje>
+        <adjunto>
+            <nombre>ND_ENDRICK_AV15943.png</nombre>
+            <ruta>C:\Users\David\Desktop\chatoffline\media\ND_ENDRICK_AV15943.png</ruta>
+            <tipo>imagen</tipo>
+        </adjunto>
+        <contenido></contenido>
+        <destinatario>Antonio</destinatario>
+        <fecha>20/10/2025 13:24</fecha>
+        <remitente>davicicito</remitente>
+    </mensaje>
 </conversacion>

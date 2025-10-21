@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml"
+<BorderPane xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="controllers.PerfilController"
             style="-fx-background-color: #ECE5DD;">
 
@@ -21,10 +21,13 @@
                 <Label fx:id="lblEmail" text="Email: " style="-fx-font-size: 14px;"/>
             </VBox>
 
+            <Button text="Hacer copia de seguridad" onAction="#hacerCopiaDeSeguridad"
+                    style="-fx-background-color: #3498DB; -fx-text-fill: white; -fx-font-weight: bold;"/>
             <Button text="⬅ Volver al chat" onAction="#volverChat"
                     style="-fx-background-color: #25D366; -fx-text-fill: white; -fx-font-weight: bold;"/>
             <Button text="Cerrar Sesión" onAction="#cerrarSesion"
                     style="-fx-background-color: #FF5A5F; -fx-text-fill: white; -fx-font-weight: bold;"/>
+            <Label fx:id="lblStatus" style="-fx-text-fill: #075E54; -fx-font-style: italic;"/>
         </VBox>
     </center>
 </BorderPane>

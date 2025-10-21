@@ -28,11 +28,7 @@
             <padding>
                 <Insets top="10" right="10" bottom="10" left="10"/>
             </padding>
-
-            <!-- Aquí va el Label que en el controlador se llama lblChat -->
-            <Label fx:id="lblChat" text="Chats" style="-fx-font-weight: bold;"/>
-
-            <!-- La lista de usuarios con el evento al hacer clic -->
+            <Label text="Chats" style="-fx-font-weight: bold;"/>
             <ListView fx:id="listaUsuarios" prefHeight="600" onMouseClicked="#abrirChat"/>
         </VBox>
     </left>
@@ -43,15 +39,18 @@
             <padding>
                 <Insets top="10" right="10" bottom="10" left="10"/>
             </padding>
-            <!-- Área donde aparecen los mensajes -->
             <TextArea fx:id="areaChat"
                       editable="false"
                       wrapText="true"
-                      prefHeight="400"
+                      VBox.vgrow="ALWAYS"
                       style="-fx-background-color: #FFFFFF; -fx-border-color: #CCCCCC;"/>
+
+            <!-- Etiqueta para mostrar el archivo adjunto seleccionado -->
+            <Label fx:id="lblAdjunto" style="-fx-font-style: italic; -fx-text-fill: #555;"/>
 
             <!-- Barra para escribir mensajes -->
             <HBox spacing="5">
+                <Button text="📎" onAction="#adjuntarArchivo"/>
                 <TextField fx:id="txtMensaje"
                            promptText="Escribe tu mensaje..."
                            HBox.hgrow="ALWAYS"/>

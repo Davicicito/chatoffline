@@ -74,7 +74,7 @@ public class Mensaje {
 
     @Override
     public String toString() {
-        String texto = "[" + fecha + "] " + remitente + " → " + destinatario + ": " + contenido;
+        String texto = "[" + fecha + "] " + remitente + ": " + contenido;
         if (adjunto != null) {
             texto += " [Adjunto: " + adjunto.getNombre() + "]";
         }

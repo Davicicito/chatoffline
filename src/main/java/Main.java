@@ -37,13 +37,13 @@ public class Main {
 
 
         // nombre que quieras para el ZIP (sin extensión)
-        String nombreZip = "chat_Antonio_Maria";
-
-        // rutas donde están tus archivos exportados y adjuntos
-        String rutaExport = "exported/conversacion_Antonio_Maria.txt";
-        String rutaMedia = "media";
-
-        ZipService zip = new ZipService();
-        zip.crearZip(nombreZip, rutaExport, rutaMedia);
+//        String nombreZip = "chat_Antonio_Maria";
+//
+//        // rutas donde están tus archivos exportados y adjuntos
+//        String rutaExport = "exported/conversacion_Antonio_Maria.txt";
+//        String rutaMedia = "media";
+//
+//        ZipService zip = new ZipService();
+//        zip.crearZip(nombreZip, rutaExport, rutaMedia);
     }
 }
