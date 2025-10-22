@@ -52,4 +52,21 @@
         <fecha>20/10/2025 13:24</fecha>
         <remitente>davicicito</remitente>
     </mensaje>
+    <mensaje>
+        <contenido>buenas</contenido>
+        <destinatario>Antonio</destinatario>
+        <fecha>21/10/2025 13:01</fecha>
+        <remitente>davicicito</remitente>
+    </mensaje>
+    <mensaje>
+        <adjunto>
+            <nombre>image (1).jpg</nombre>
+            <ruta>C:\Users\David\Desktop\chatoffline\media\image (1).jpg</ruta>
+            <tipo>imagen</tipo>
+        </adjunto>
+        <contenido></contenido>
+        <destinatario>Antonio</destinatario>
+        <fecha>21/10/2025 13:01</fecha>
+        <remitente>davicicito</remitente>
+    </mensaje>
 </conversacion>

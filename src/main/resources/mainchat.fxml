@@ -35,20 +35,20 @@
 
     <!-- Zona central del chat -->
     <center>
-        <VBox spacing="5" >
+        <VBox spacing="5">
             <padding>
                 <Insets top="10" right="10" bottom="10" left="10"/>
             </padding>
-            <TextArea fx:id="areaChat"
-                      editable="false"
-                      wrapText="true"
-                      VBox.vgrow="ALWAYS"
-                      style="-fx-background-color: #FFFFFF; -fx-border-color: #CCCCCC;"/>
 
-            <!-- Etiqueta para mostrar el archivo adjunto seleccionado -->
+            <!-- Scroll de mensajes -->
+            <ScrollPane fx:id="scrollChat" fitToWidth="true" VBox.vgrow="ALWAYS">
+                <VBox fx:id="contenedorMensajes" spacing="8" style="-fx-background-color: #FFFFFF;"/>
+            </ScrollPane>
+
+            <!-- Archivo adjunto -->
             <Label fx:id="lblAdjunto" style="-fx-font-style: italic; -fx-text-fill: #555;"/>
 
-            <!-- Barra para escribir mensajes -->
+            <!-- Enviar mensaje -->
             <HBox spacing="5">
                 <Button text="📎" onAction="#adjuntarArchivo"/>
                 <TextField fx:id="txtMensaje"
@@ -60,5 +60,6 @@
             </HBox>
         </VBox>
     </center>
+
 
 </BorderPane>

@@ -4,11 +4,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import model.Adjunto;
@@ -29,6 +28,8 @@ public class MainChatController {
     @FXML private Label lblUsuario;
     @FXML private ListView<String> listaUsuarios;
     @FXML private TextArea areaChat;
+    @FXML private VBox contenedorMensajes;
+    @FXML private ScrollPane scrollChat;
     @FXML private TextField txtMensaje;
     @FXML private Label lblAdjunto; // Etiqueta para el nombre del archivo
 
@@ -62,14 +63,17 @@ public class MainChatController {
         contactoSeleccionado = listaUsuarios.getSelectionModel().getSelectedItem();
         if (contactoSeleccionado == null) return;
 
-        areaChat.clear();
-        limpiarAdjunto(); // Limpiar adjunto al cambiar de chat
+        contenedorMensajes.getChildren().clear();
+        limpiarAdjunto();
 
-        List<Mensaje> conversacion = servicioMensajes.obtenerConversacion(usuarioActual.getNombre(), contactoSeleccionado);
+        List<Mensaje> conversacion = servicioMensajes.obtenerConversacion(
+                usuarioActual.getNombre(), contactoSeleccionado);
+
         for (Mensaje msg : conversacion) {
-            areaChat.appendText(msg.toString() + "\n");
+            mostrarMensaje(msg);
         }
     }
+
 
     @FXML
     private void adjuntarArchivo(ActionEvent event) {
@@ -89,19 +93,19 @@ public class MainChatController {
     @FXML
     private void enviarMensaje(ActionEvent event) {
         String contenido = txtMensaje.getText().trim();
-        if (contenido.isEmpty() && adjuntoActual == null) {
-            return; // No enviar mensajes vacíos si no hay adjunto
-        }
+        if (contenido.isEmpty() && adjuntoActual == null) return;
         if (contactoSeleccionado == null) return;
 
-        // Crear el nuevo mensaje con el texto y el adjunto (que puede ser null)
-        Mensaje nuevoMensaje = new Mensaje(usuarioActual.getNombre(), contactoSeleccionado, contenido, adjuntoActual);
-        servicioMensajes.enviarMensaje(nuevoMensaje);
+        Mensaje nuevoMensaje = new Mensaje(
+                usuarioActual.getNombre(), contactoSeleccionado, contenido, adjuntoActual);
 
-        areaChat.appendText(nuevoMensaje.toString() + "\n");
+        servicioMensajes.enviarMensaje(nuevoMensaje);
+        mostrarMensaje(nuevoMensaje);
+
         txtMensaje.clear();
-        limpiarAdjunto(); // Limpiar la selección de adjunto después de enviar
+        limpiarAdjunto();
     }
+
 
     private void limpiarAdjunto() {
         adjuntoActual = null;
@@ -119,4 +123,33 @@ public class MainChatController {
             e.printStackTrace();
         }
     }
+    private void mostrarMensaje(Mensaje msg) {
+        Label lbl = new Label(msg.getContenido());
+        lbl.setWrapText(true);
+        lbl.setMaxWidth(300);
+        lbl.setStyle("-fx-padding: 8; -fx-background-radius: 10; -fx-font-size: 13;");
+
+        HBox burbuja = new HBox(lbl);
+        burbuja.setPadding(new javafx.geometry.Insets(5, 10, 5, 10));
+
+        // Mensaje propio → derecha (verde)
+        if (msg.getRemitente().equalsIgnoreCase(usuarioActual.getNombre())) {
+            burbuja.setStyle("-fx-alignment: center-right;");
+            lbl.setStyle(lbl.getStyle() +
+                    "-fx-background-color: #DCF8C6; -fx-text-fill: black;");
+        }
+        // Mensaje recibido → izquierda (gris)
+        else {
+            burbuja.setStyle("-fx-alignment: center-left;");
+            lbl.setStyle(lbl.getStyle() +
+                    "-fx-background-color: #EAEAEA; -fx-text-fill: black;");
+        }
+
+        contenedorMensajes.getChildren().add(burbuja);
+
+        // Scroll automático hacia abajo
+        scrollChat.layout();
+        scrollChat.setVvalue(1.0);
+    }
+
 }
