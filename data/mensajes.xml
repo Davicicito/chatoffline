@@ -1,77 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <conversacion>
     <mensaje>
-        <contenido>Hola Maria</contenido>
-        <destinatario>Maria</destinatario>
-        <fecha>14/10/2025 08:50</fecha>
-        <remitente>Antonio</remitente>
-    </mensaje>
-    <mensaje>
-        <contenido>Hola Antonio</contenido>
+        <contenido>hola antonio como estas?</contenido>
         <destinatario>Antonio</destinatario>
-        <fecha>14/10/2025 08:50</fecha>
-        <remitente>Maria</remitente>
-    </mensaje>
-    <mensaje>
-        <contenido>Como estas?</contenido>
-        <destinatario>Maria</destinatario>
-        <fecha>14/10/2025 08:50</fecha>
-        <remitente>Antonio</remitente>
-    </mensaje>
-    <mensaje>
-        <contenido>hola</contenido>
-        <destinatario>Juan</destinatario>
-        <fecha>22/10/2025 18:10</fecha>
-        <remitente>davicicito</remitente>
-    </mensaje>
-    <mensaje>
-        <adjunto>
-            <nombre>proyectoFinalUd1_XML_Stream_2526.pdf</nombre>
-            <ruta>file:/C:/Users/David/Desktop/chatoffline/media/proyectoFinalUd1_XML_Stream_2526.pdf</ruta>
-            <tipo>pdf</tipo>
-        </adjunto>
-        <contenido></contenido>
-        <destinatario>Juan</destinatario>
-        <fecha>22/10/2025 18:11</fecha>
-        <remitente>davicicito</remitente>
-    </mensaje>
-    <mensaje>
-        <adjunto>
-            <nombre>PORTERIA.png</nombre>
-            <ruta>file:/C:/Users/David/Desktop/chatoffline/media/PORTERIA.png</ruta>
-            <tipo>imagen</tipo>
-        </adjunto>
-        <contenido></contenido>
-        <destinatario>Juan</destinatario>
-        <fecha>22/10/2025 18:12</fecha>
-        <remitente>davicicito</remitente>
-    </mensaje>
-    <mensaje>
-        <contenido>hola</contenido>
-        <destinatario>Antonio</destinatario>
-        <fecha>22/10/2025 18:34</fecha>
-        <remitente>davicicito</remitente>
-    </mensaje>
-    <mensaje>
-        <adjunto>
-            <nombre>PORTERIA.png</nombre>
-            <ruta>file:/C:/Users/David/Desktop/chatoffline/media/PORTERIA.png</ruta>
-            <tipo>imagen</tipo>
-        </adjunto>
-        <contenido></contenido>
-        <destinatario>Antonio</destinatario>
-        <fecha>22/10/2025 18:34</fecha>
-        <remitente>davicicito</remitente>
-    </mensaje>
-    <mensaje>
-        <adjunto>
-            <nombre>proyectoFinalUd1_XML_Stream_2526.pdf</nombre>
-            <ruta>file:/C:/Users/David/Desktop/chatoffline/media/proyectoFinalUd1_XML_Stream_2526.pdf</ruta>
-            <tipo>pdf</tipo>
-        </adjunto>
-        <contenido></contenido>
-        <destinatario>Antonio</destinatario>
-        <fecha>22/10/2025 18:35</fecha>
+        <fecha>23/10/2025 12:56</fecha>
         <remitente>davicicito</remitente>
     </mensaje>
 </conversacion>
