@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml"
+<BorderPane xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="controllers.MainChatController"
             style="-fx-background-color: #ECE5DD;">
 
@@ -35,20 +35,20 @@
 
     <!-- Zona central del chat -->
     <center>
-        <VBox spacing="5">
+        <VBox spacing="5" >
             <padding>
                 <Insets top="10" right="10" bottom="10" left="10"/>
             </padding>
+            
+            <!-- ¡CAMBIO IMPORTANTE! Se reemplaza TextArea por ListView -->
+            <ListView fx:id="chatListView"
+                      VBox.vgrow="ALWAYS"
+                      style="-fx-background-color: #E5DDD5; -fx-border-color: #CCCCCC;"/>
 
-            <!-- Scroll de mensajes -->
-            <ScrollPane fx:id="scrollChat" fitToWidth="true" VBox.vgrow="ALWAYS">
-                <VBox fx:id="contenedorMensajes" spacing="8" style="-fx-background-color: #FFFFFF;"/>
-            </ScrollPane>
-
-            <!-- Archivo adjunto -->
+            <!-- Etiqueta para mostrar el archivo adjunto seleccionado -->
             <Label fx:id="lblAdjunto" style="-fx-font-style: italic; -fx-text-fill: #555;"/>
 
-            <!-- Enviar mensaje -->
+            <!-- Barra para escribir mensajes -->
             <HBox spacing="5">
                 <Button text="📎" onAction="#adjuntarArchivo"/>
                 <TextField fx:id="txtMensaje"
@@ -60,6 +60,5 @@
             </HBox>
         </VBox>
     </center>
-
 
 </BorderPane>

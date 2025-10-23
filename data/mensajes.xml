@@ -19,54 +19,59 @@
         <remitente>Antonio</remitente>
     </mensaje>
     <mensaje>
+        <contenido>hola</contenido>
+        <destinatario>Juan</destinatario>
+        <fecha>22/10/2025 18:10</fecha>
+        <remitente>davicicito</remitente>
+    </mensaje>
+    <mensaje>
         <adjunto>
-            <nombre>GdBvJr0WwAA5U9l.png</nombre>
-            <ruta>C:\Users\david\Desktop\chatoffline\media\GdBvJr0WwAA5U9l.png</ruta>
+            <nombre>proyectoFinalUd1_XML_Stream_2526.pdf</nombre>
+            <ruta>file:/C:/Users/David/Desktop/chatoffline/media/proyectoFinalUd1_XML_Stream_2526.pdf</ruta>
+            <tipo>pdf</tipo>
+        </adjunto>
+        <contenido></contenido>
+        <destinatario>Juan</destinatario>
+        <fecha>22/10/2025 18:11</fecha>
+        <remitente>davicicito</remitente>
+    </mensaje>
+    <mensaje>
+        <adjunto>
+            <nombre>PORTERIA.png</nombre>
+            <ruta>file:/C:/Users/David/Desktop/chatoffline/media/PORTERIA.png</ruta>
             <tipo>imagen</tipo>
         </adjunto>
-        <contenido>Te envío la foto.</contenido>
-        <destinatario>Maria</destinatario>
-        <fecha>15/10/2025 11:32</fecha>
-        <remitente>Antonio</remitente>
+        <contenido></contenido>
+        <destinatario>Juan</destinatario>
+        <fecha>22/10/2025 18:12</fecha>
+        <remitente>davicicito</remitente>
     </mensaje>
     <mensaje>
         <contenido>hola</contenido>
         <destinatario>Antonio</destinatario>
-        <fecha>18/10/2025 17:20</fecha>
-        <remitente>davicicito</remitente>
-    </mensaje>
-    <mensaje>
-        <contenido>hola david que pasa</contenido>
-        <destinatario>davicicito</destinatario>
-        <fecha>18/10/2025 17:21</fecha>
-        <remitente>Antonio</remitente>
-    </mensaje>
-    <mensaje>
-        <adjunto>
-            <nombre>ND_ENDRICK_AV15943.png</nombre>
-            <ruta>C:\Users\David\Desktop\chatoffline\media\ND_ENDRICK_AV15943.png</ruta>
-            <tipo>imagen</tipo>
-        </adjunto>
-        <contenido></contenido>
-        <destinatario>Antonio</destinatario>
-        <fecha>20/10/2025 13:24</fecha>
-        <remitente>davicicito</remitente>
-    </mensaje>
-    <mensaje>
-        <contenido>buenas</contenido>
-        <destinatario>Antonio</destinatario>
-        <fecha>21/10/2025 13:01</fecha>
+        <fecha>22/10/2025 18:34</fecha>
         <remitente>davicicito</remitente>
     </mensaje>
     <mensaje>
         <adjunto>
-            <nombre>image (1).jpg</nombre>
-            <ruta>C:\Users\David\Desktop\chatoffline\media\image (1).jpg</ruta>
+            <nombre>PORTERIA.png</nombre>
+            <ruta>file:/C:/Users/David/Desktop/chatoffline/media/PORTERIA.png</ruta>
             <tipo>imagen</tipo>
         </adjunto>
         <contenido></contenido>
         <destinatario>Antonio</destinatario>
-        <fecha>21/10/2025 13:01</fecha>
+        <fecha>22/10/2025 18:34</fecha>
+        <remitente>davicicito</remitente>
+    </mensaje>
+    <mensaje>
+        <adjunto>
+            <nombre>proyectoFinalUd1_XML_Stream_2526.pdf</nombre>
+            <ruta>file:/C:/Users/David/Desktop/chatoffline/media/proyectoFinalUd1_XML_Stream_2526.pdf</ruta>
+            <tipo>pdf</tipo>
+        </adjunto>
+        <contenido></contenido>
+        <destinatario>Antonio</destinatario>
+        <fecha>22/10/2025 18:35</fecha>
         <remitente>davicicito</remitente>
     </mensaje>
 </conversacion>

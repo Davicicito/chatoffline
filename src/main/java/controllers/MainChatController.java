@@ -1,13 +1,15 @@
 package controllers;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import model.Adjunto;
@@ -26,20 +28,19 @@ import java.util.stream.Collectors;
 public class MainChatController {
 
     @FXML private Label lblUsuario;
-    @FXML private ListView<String> listaUsuarios;
-    @FXML private TextArea areaChat;
-    @FXML private VBox contenedorMensajes;
-    @FXML private ScrollPane scrollChat;
+    @FXML private ListView<String> listaUsuarios; // Vuelve a ser una lista de Strings
+    @FXML private ListView<Mensaje> chatListView;
     @FXML private TextField txtMensaje;
-    @FXML private Label lblAdjunto; // Etiqueta para el nombre del archivo
+    @FXML private Label lblAdjunto;
 
     private final XMLUsuariosService servicioUsuarios = new XMLUsuariosService();
     private final XMLMensajesService servicioMensajes = new XMLMensajesService();
-    private final AdjuntoService servicioAdjuntos = new AdjuntoService(); // Servicio para adjuntos
+    private final AdjuntoService servicioAdjuntos = new AdjuntoService();
 
     private Usuario usuarioActual;
-    private String contactoSeleccionado;
-    private Adjunto adjuntoActual = null; // Para guardar el adjunto seleccionado
+    private String contactoSeleccionado; // Vuelve a ser un String
+    private Adjunto adjuntoActual = null;
+    private final ObservableList<Mensaje> mensajesMostrados = FXCollections.observableArrayList();
 
     @FXML
     public void initialize() {
@@ -50,30 +51,29 @@ public class MainChatController {
         }
         lblUsuario.setText("Usuario: " + usuarioActual.getNombre());
 
-        List<Usuario> todos = servicioUsuarios.cargarUsuarios();
-        List<String> nombres = todos.stream()
-                .filter(u -> !u.getNombre().equalsIgnoreCase(usuarioActual.getNombre()))
+        // Cargar la lista de contactos con nombres (como antes)
+        List<String> nombres = servicioUsuarios.cargarUsuarios().stream()
                 .map(Usuario::getNombre)
+                .filter(nombre -> !nombre.equalsIgnoreCase(usuarioActual.getNombre()))
                 .collect(Collectors.toList());
         listaUsuarios.getItems().addAll(nombres);
+
+        // Configurar el área de chat para usar las nuevas "burbujas"
+        chatListView.setItems(mensajesMostrados);
+        chatListView.setCellFactory(listView -> new MessageCellController());
     }
 
     @FXML
     private void abrirChat(MouseEvent event) {
-        contactoSeleccionado = listaUsuarios.getSelectionModel().getSelectedItem();
+        contactoSeleccionado = listaUsuarios.getSelectionModel().getSelectedItem(); // Ahora es un String
         if (contactoSeleccionado == null) return;
 
-        contenedorMensajes.getChildren().clear();
         limpiarAdjunto();
+        mensajesMostrados.clear();
 
-        List<Mensaje> conversacion = servicioMensajes.obtenerConversacion(
-                usuarioActual.getNombre(), contactoSeleccionado);
-
-        for (Mensaje msg : conversacion) {
-            mostrarMensaje(msg);
-        }
+        List<Mensaje> conversacion = servicioMensajes.obtenerConversacion(usuarioActual.getNombre(), contactoSeleccionado);
+        mensajesMostrados.addAll(conversacion);
     }
-
 
     @FXML
     private void adjuntarArchivo(ActionEvent event) {
@@ -82,7 +82,6 @@ public class MainChatController {
         File archivoSeleccionado = fileChooser.showOpenDialog(lblUsuario.getScene().getWindow());
 
         if (archivoSeleccionado != null) {
-            // Usar el servicio para guardar el archivo y obtener el objeto Adjunto
             adjuntoActual = servicioAdjuntos.guardarAdjunto(archivoSeleccionado.getAbsolutePath());
             if (adjuntoActual != null) {
                 lblAdjunto.setText("Adjunto: " + adjuntoActual.getNombre());
@@ -93,19 +92,18 @@ public class MainChatController {
     @FXML
     private void enviarMensaje(ActionEvent event) {
         String contenido = txtMensaje.getText().trim();
-        if (contenido.isEmpty() && adjuntoActual == null) return;
-        if (contactoSeleccionado == null) return;
+        if ((contenido.isEmpty() && adjuntoActual == null) || contactoSeleccionado == null) {
+            return;
+        }
 
-        Mensaje nuevoMensaje = new Mensaje(
-                usuarioActual.getNombre(), contactoSeleccionado, contenido, adjuntoActual);
-
+        Mensaje nuevoMensaje = new Mensaje(usuarioActual.getNombre(), contactoSeleccionado, contenido, adjuntoActual);
         servicioMensajes.enviarMensaje(nuevoMensaje);
-        mostrarMensaje(nuevoMensaje);
 
+        mensajesMostrados.add(nuevoMensaje);
+        chatListView.scrollTo(mensajesMostrados.size() - 1);
         txtMensaje.clear();
         limpiarAdjunto();
     }
-
 
     private void limpiarAdjunto() {
         adjuntoActual = null;
@@ -123,33 +121,4 @@ public class MainChatController {
             e.printStackTrace();
         }
     }
-    private void mostrarMensaje(Mensaje msg) {
-        Label lbl = new Label(msg.getContenido());
-        lbl.setWrapText(true);
-        lbl.setMaxWidth(300);
-        lbl.setStyle("-fx-padding: 8; -fx-background-radius: 10; -fx-font-size: 13;");
-
-        HBox burbuja = new HBox(lbl);
-        burbuja.setPadding(new javafx.geometry.Insets(5, 10, 5, 10));
-
-        // Mensaje propio → derecha (verde)
-        if (msg.getRemitente().equalsIgnoreCase(usuarioActual.getNombre())) {
-            burbuja.setStyle("-fx-alignment: center-right;");
-            lbl.setStyle(lbl.getStyle() +
-                    "-fx-background-color: #DCF8C6; -fx-text-fill: black;");
-        }
-        // Mensaje recibido → izquierda (gris)
-        else {
-            burbuja.setStyle("-fx-alignment: center-left;");
-            lbl.setStyle(lbl.getStyle() +
-                    "-fx-background-color: #EAEAEA; -fx-text-fill: black;");
-        }
-
-        contenedorMensajes.getChildren().add(burbuja);
-
-        // Scroll automático hacia abajo
-        scrollChat.layout();
-        scrollChat.setVvalue(1.0);
-    }
-
 }
