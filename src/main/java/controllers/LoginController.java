@@ -41,7 +41,7 @@ public class LoginController {
         // Guardar usuario en la sesión
         Session.setCurrentUser(usuario);
 
-        // ✅ Inicio de sesión correcto → guardar usuario en sesión y abrir pantalla principal
+        // Inicio de sesión correcto → guardar usuario en sesión y abrir pantalla principal
         try {
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/mainchat.fxml"));

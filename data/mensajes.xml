@@ -6,4 +6,16 @@
         <fecha>23/10/2025 12:56</fecha>
         <remitente>davicicito</remitente>
     </mensaje>
+    <mensaje>
+        <contenido>que pasa antonio</contenido>
+        <destinatario>Antonio</destinatario>
+        <fecha>23/10/2025 19:30</fecha>
+        <remitente>Pedro</remitente>
+    </mensaje>
+    <mensaje>
+        <contenido>hola david</contenido>
+        <destinatario>davicicito</destinatario>
+        <fecha>23/10/2025 19:30</fecha>
+        <remitente>Pedro</remitente>
+    </mensaje>
 </conversacion>

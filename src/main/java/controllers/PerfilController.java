@@ -48,31 +48,32 @@ public class PerfilController {
 
         if (!exportado) {
             mostrarAlerta("Información", "No tienes mensajes para exportar.", Alert.AlertType.INFORMATION);
-            archivoCsvTemporal.delete(); // Limpiar por si acaso
+            archivoCsvTemporal.delete();
             return;
         }
 
-        // 2. Preguntar al usuario dónde guardar el ZIP
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Guardar copia de seguridad");
-        fileChooser.setInitialFileName(usuarioActual.getNombre() + "_backup.zip");
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Archivos ZIP", "*.zip"));
-        File archivoZipDestino = fileChooser.showSaveDialog(lblNombre.getScene().getWindow());
-
-        if (archivoZipDestino != null) {
-            // 3. Crear el archivo ZIP
-            boolean exito = zipService.crearBackup(archivoZipDestino, archivoCsvTemporal, "media");
-
-            if (exito) {
-                mostrarAlerta("Éxito", "Copia de seguridad creada correctamente en: " + archivoZipDestino.getAbsolutePath(), Alert.AlertType.INFORMATION);
-            } else {
-                mostrarAlerta("Error", "No se pudo crear la copia de seguridad.", Alert.AlertType.ERROR);
-            }
+        // 2. Crear carpeta "exported" si no existe
+        File carpetaExported = new File("exported");
+        if (!carpetaExported.exists()) {
+            carpetaExported.mkdirs();
         }
 
-        // 4. Borrar el archivo CSV temporal
+        // 3. Crear el archivo ZIP dentro de la carpeta "exported"
+        File archivoZipDestino = new File(carpetaExported, usuarioActual.getNombre() + "_backup.zip");
+
+        // 4. Crear el ZIP
+        boolean exito = zipService.crearBackup(archivoZipDestino, archivoCsvTemporal, "media");
+
+        if (exito) {
+            mostrarAlerta("Éxito", "Copia de seguridad creada correctamente en:\n" + archivoZipDestino.getAbsolutePath(), Alert.AlertType.INFORMATION);
+        } else {
+            mostrarAlerta("Error", "No se pudo crear la copia de seguridad.", Alert.AlertType.ERROR);
+        }
+
+        // 5. Borrar archivo temporal CSV
         archivoCsvTemporal.delete();
     }
+
 
     @FXML
     private void volverChat(ActionEvent event) {

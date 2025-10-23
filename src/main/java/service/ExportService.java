@@ -51,17 +51,26 @@ public class ExportService {
 
         // Escribir los mensajes en formato CSV
         try (FileWriter writer = new FileWriter(archivoDestino)) {
+
             // Escribir la cabecera del CSV
             writer.write("Fecha,Remitente,Destinatario,Contenido,Adjunto\n");
 
+            // Recorrer todos los mensajes del usuario
             for (Mensaje mensaje : mensajesDelUsuario) {
-                String adjunto = (mensaje.getAdjunto() != null) ? mensaje.getAdjunto().getNombre() : "";
-                writer.write(String.format("%s,%s,%s,\"%s\",%s\n",
-                        mensaje.getFecha(),
-                        mensaje.getRemitente(),
-                        mensaje.getDestinatario(),
-                        mensaje.getContenido().replace("\"", "\"\""), // Escapar comillas dobles
-                        adjunto));
+                String adjunto = ""; // Valor por defecto (sin adjunto)
+
+                if (mensaje.getAdjunto() != null) {
+                    adjunto = mensaje.getAdjunto().getNombre();
+                }
+
+                // Escribir una línea del CSV con los datos del mensaje
+                writer.write(
+                        mensaje.getFecha() + "," +
+                                mensaje.getRemitente() + "," +
+                                mensaje.getDestinatario() + "," +
+                                "\"" + mensaje.getContenido().replace("\"", "\"\"") + "\"," +
+                                adjunto + "\n"
+                );
             }
             return true;
         } catch (IOException e) {

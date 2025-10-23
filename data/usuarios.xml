@@ -20,4 +20,9 @@
         <email>juanito@gmail.com</email>
         <contraseña>4321</contraseña>
     </usuario>
+    <usuario>
+        <nombre>Pedro</nombre>
+        <email>pedrito@gmail.com</email>
+        <contraseña>Usuario:1</contraseña>
+    </usuario>
 </usuarios>
