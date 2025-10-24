@@ -10,6 +10,13 @@ public class AdjuntoService {
 
     private static final String MEDIA_DIR = "media";
 
+    /**
+     * Guarda una copia del archivo que el usuario selecciona (imagen, pdf, etc.)
+     * dentro de la carpeta "media" del proyecto.
+     * Devuelve un objeto Adjunto con la información del archivo.
+     * @param rutaOriginal Ruta del archivo original en el equipo.
+     * @return El objeto Adjunto con nombre, ruta y tipo del archivo.
+     */
     public Adjunto guardarAdjunto(String rutaOriginal) {
         File archivoOriginal = new File(rutaOriginal);
         if (!archivoOriginal.exists()) {
@@ -46,6 +53,12 @@ public class AdjuntoService {
         }
     }
 
+    /**
+     * Determina el tipo de archivo según su extensión.
+     * Sirve para saber si es una imagen, documento, video, etc.
+     * @param name Nombre del archivo (con extensión).
+     * @return Tipo de archivo como texto (imagen, pdf, documento, video, otro).
+     */
     private String obtenerTipoArchivo(String name) {
         String lowerCaseName = name.toLowerCase();
         if (lowerCaseName.endsWith(".jpg") || lowerCaseName.endsWith(".png") || lowerCaseName.endsWith(".gif")) {

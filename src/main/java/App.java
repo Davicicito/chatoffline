@@ -23,10 +23,6 @@ public class App extends Application {
         } catch (Exception e) {
             System.err.println("Error al cargar el icono: " + e.getMessage());
         }
-
-        // --- PASAR HOSTSERVICES PARA PODER ABRIR ARCHIVOS ---
-        stage.getProperties().put("hostServices", getHostServices());
-
         stage.setTitle("Chat Offline XML");
         stage.setScene(scene);
         stage.show();

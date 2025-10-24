@@ -16,6 +16,11 @@ public class ExportService {
 
     private final File archivoMensajes = new File("data/mensajes.xml");
 
+    /**
+     * Carga la conversación completa desde el archivo mensajes.xml.
+     * Si el archivo no existe o hay un error, devuelve una conversación vacía.
+     * @return Un objeto Conversacion con todos los mensajes.
+     */
     private Conversacion cargarConversacion() {
         try {
             if (!archivoMensajes.exists()) return new Conversacion();

@@ -42,6 +42,11 @@ public class MainChatController {
     private String contactoSeleccionado;
     private Adjunto adjuntoActual = null;
 
+
+    /**
+     * Se ejecuta al abrir la ventana del chat principal.
+     * Carga el usuario que ha iniciado sesión y muestra la lista de contactos disponibles.
+     */
     @FXML
     public void initialize() {
         usuarioActual = Session.getCurrentUser();
@@ -59,6 +64,11 @@ public class MainChatController {
         listaUsuarios.getItems().addAll(nombres);
     }
 
+    /**
+     * Se ejecuta cuando el usuario selecciona un contacto de la lista.
+     * Limpia el chat actual y carga todos los mensajes de esa conversación.
+     * @param event Evento del clic en la lista.
+     */
     @FXML
     private void abrirChat(MouseEvent event) {
         contactoSeleccionado = listaUsuarios.getSelectionModel().getSelectedItem();
@@ -74,6 +84,11 @@ public class MainChatController {
         }
     }
 
+    /**
+     * Permite seleccionar un archivo del ordenador para enviarlo como adjunto.
+     * Muestra el nombre del archivo elegido en pantalla.
+     * @param event Evento del botón de adjuntar archivo.
+     */
     @FXML
     private void adjuntarArchivo(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
@@ -88,6 +103,11 @@ public class MainChatController {
         }
     }
 
+    /**
+     * Envía el mensaje actual (con o sin adjunto) al contacto seleccionado.
+     * También guarda el mensaje en el XML y lo muestra en pantalla.
+     * @param event Evento del botón "Enviar".
+     */
     @FXML
     private void enviarMensaje(ActionEvent event) {
         String contenido = txtMensaje.getText().trim();
@@ -101,6 +121,11 @@ public class MainChatController {
         limpiarAdjunto();
     }
 
+    /**
+     * Muestra un mensaje en pantalla con su formato de burbuja (izquierda/derecha).
+     * Si tiene adjunto, muestra una imagen o un enlace clicable según el tipo.
+     * @param msg El mensaje que se quiere mostrar en el chat.
+     */
     private void mostrarMensaje(Mensaje msg) {
         // Contenedor de una burbuja de mensaje
         VBox mensajeBox = new VBox(5);
@@ -130,7 +155,7 @@ public class MainChatController {
                 }
 
             } else {
-                // 🔹 Mostrar enlace clicable para abrir PDF, DOC, etc.
+                // Mostrar enlace clicable para abrir PDF, DOC, etc.
                 Hyperlink link = new Hyperlink("📎 " + msg.getAdjunto().getNombre());
                 link.setOnAction(ev -> {
                     try {
@@ -171,11 +196,18 @@ public class MainChatController {
         scrollChat.setVvalue(1.0);
     }
 
+    /**
+     * Limpia el adjunto actual y el texto que lo muestra debajo del chat.
+     */
     private void limpiarAdjunto() {
         adjuntoActual = null;
         lblAdjunto.setText("");
     }
 
+    /**
+     * Abre la ventana de perfil del usuario logueado.
+     * Cierra el chat actual y muestra la vista del perfil.
+     */
     @FXML
     private void abrirPerfil() {
         try {

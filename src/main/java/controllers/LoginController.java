@@ -21,6 +21,13 @@ public class LoginController {
 
     private final XMLUsuariosService servicioUsuarios = new XMLUsuariosService();
 
+    /**
+     * Se ejecuta cuando le doy al botón de 'Iniciar sesión'.
+     * Coge los datos de los campos, comprueba que no estén vacíos y busca si el usuario existe.
+     * Si el usuario y la contraseña son correctos, lo guarda en la sesión y abre la pantalla del chat.
+     * Si algo falla, muestra un mensaje de error.
+     * @param event El evento que se produce al hacer clic en el botón.
+     */
     @FXML
     private void iniciarSesion(ActionEvent event) {
         String nombre = txtUsuario.getText().trim();
@@ -58,6 +65,11 @@ public class LoginController {
     }
 
 
+    /**
+     * Se ejecuta cuando hago clic en el enlace '¿No tienes cuenta? Regístrate'.
+     * Carga la pantalla de registro (registrar.fxml) y la muestra en la ventana actual.
+     * @param event El evento que se produce al hacer clic en el enlace.
+     */
     @FXML
     private void abrirRegistro(ActionEvent event) {
         try {

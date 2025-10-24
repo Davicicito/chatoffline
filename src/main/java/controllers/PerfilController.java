@@ -25,6 +25,10 @@ public class PerfilController {
     private final ExportService exportService = new ExportService();
     private final ZipService zipService = new ZipService();
 
+    /**
+     * Se ejecuta al abrir la ventana de perfil del usuario.
+     * Muestra el nombre y correo del usuario que ha iniciado sesión.
+     */
     @FXML
     public void initialize() {
         Usuario usuarioActual = Session.getCurrentUser();
@@ -34,6 +38,12 @@ public class PerfilController {
         }
     }
 
+    /**
+     * Crea una copia de seguridad del usuario actual.
+     * Primero exporta todos los mensajes a un archivo CSV, y después los comprime junto
+     * a los archivos adjuntos en un ZIP dentro de la carpeta "exported".
+     * @param event Evento del botón "Hacer copia de seguridad".
+     */
     @FXML
     private void hacerCopiaDeSeguridad(ActionEvent event) {
         Usuario usuarioActual = Session.getCurrentUser();
@@ -75,6 +85,10 @@ public class PerfilController {
     }
 
 
+    /**
+     * Permite volver al chat principal cerrando la ventana actual del perfil.
+     * @param event Evento del botón "Volver al chat".
+     */
     @FXML
     private void volverChat(ActionEvent event) {
         try {
@@ -87,6 +101,10 @@ public class PerfilController {
         }
     }
 
+    /**
+     * Cierra la sesión actual y devuelve al usuario a la pantalla de inicio de sesión.
+     * @param event Evento del botón "Cerrar sesión".
+     */
     @FXML
     private void cerrarSesion(ActionEvent event) {
         Session.clear();
@@ -100,6 +118,13 @@ public class PerfilController {
         }
     }
 
+    /**
+     * Muestra una alerta sencilla en pantalla con el mensaje que se le pasa.
+     * Se usa para mostrar errores, avisos o confirmaciones al usuario.
+     * @param titulo Título de la ventana de alerta.
+     * @param contenido Mensaje principal que se mostrará.
+     * @param tipo Tipo de alerta (información, error, etc.).
+     */
     private void mostrarAlerta(String titulo, String contenido, Alert.AlertType tipo) {
         Alert alert = new Alert(tipo);
         alert.setTitle(titulo);

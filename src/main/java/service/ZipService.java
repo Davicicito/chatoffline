@@ -10,11 +10,14 @@ import java.util.zip.ZipOutputStream;
 public class ZipService {
 
     /**
-     * Crea un archivo ZIP en la ruta de destino especificada.
-     * @param archivoZipDestino El archivo ZIP que se va a crear (ruta completa).
-     * @param archivoCsvExportado El archivo CSV con los mensajes para incluir.
-     * @param carpetaMedia La carpeta con los archivos adjuntos para incluir.
-     * @return true si el ZIP se creó correctamente, false en caso contrario.
+     * Crea un archivo ZIP con la copia de seguridad del usuario.
+     * Dentro del ZIP se guarda el archivo CSV con los mensajes
+     * y también todos los archivos de la carpeta "media" (los adjuntos).
+     *
+     * @param archivoZipDestino Archivo ZIP que se va a crear.
+     * @param archivoCsvExportado Archivo CSV que contiene los mensajes.
+     * @param carpetaMedia Carpeta con los adjuntos que se incluirán en el ZIP.
+     * @return true si todo salió bien, false si hubo algún error.
      */
     public boolean crearBackup(File archivoZipDestino, File archivoCsvExportado, String carpetaMedia) {
         try (FileOutputStream fos = new FileOutputStream(archivoZipDestino);
@@ -45,7 +48,15 @@ public class ZipService {
         }
     }
 
-    // Método auxiliar para añadir un archivo al stream del ZIP
+    /**
+     * Método auxiliar que añade un archivo individual al ZIP.
+     * Se encarga de leer el archivo original y escribirlo dentro del ZIP.
+     *
+     * @param archivo Archivo que se quiere añadir.
+     * @param nombreEnZip Nombre que tendrá dentro del ZIP.
+     * @param zipOut Flujo de salida del ZIP (donde se está escribiendo).
+     * @throws IOException Si ocurre un error al leer o escribir los datos.
+     */
     private void agregarArchivoAlZip(File archivo, String nombreEnZip, ZipOutputStream zipOut) throws IOException {
         try (FileInputStream fis = new FileInputStream(archivo)) {
             ZipEntry zipEntry = new ZipEntry(nombreEnZip);

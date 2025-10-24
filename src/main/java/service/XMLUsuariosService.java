@@ -12,7 +12,11 @@ public class XMLUsuariosService {
 
     private final File archivoUsuarios = new File("data/usuarios.xml");
 
-    // --- Cargar usuarios ---
+     /**
+     * Carga todos los usuarios registrados desde el archivo XML.
+     * Si el archivo no existe, devuelve una lista vacía.
+     * @return Lista de objetos Usuario cargados desde usuarios.xml.
+     */
     public List<Usuario> cargarUsuarios() {
         try {
             if (!archivoUsuarios.exists()) return new ArrayList<>();
@@ -27,7 +31,11 @@ public class XMLUsuariosService {
         }
     }
 
-    // --- Guardar usuarios ---
+    /**
+     * Guarda una lista de usuarios en el archivo XML.
+     * Si la carpeta "data" no existe, se crea automáticamente.
+     * @param usuarios Lista de usuarios que se quiere guardar.
+     */
     private void guardarUsuarios(List<Usuario> usuarios) {
         try {
             // Asegurar que el directorio data/ existe
@@ -45,7 +53,12 @@ public class XMLUsuariosService {
         }
     }
 
-    // --- Registrar usuario ---
+    /**
+     * Registra un nuevo usuario en el sistema.
+     * Comprueba que no haya otro usuario con el mismo nombre o email antes de guardarlo.
+     * @param nuevoUsuario Usuario que se quiere registrar.
+     * @return true si el usuario se registró correctamente, false si ya existe.
+     */
     public boolean registrarUsuario(Usuario nuevoUsuario) {
         List<Usuario> usuarios = cargarUsuarios();
 
@@ -60,7 +73,13 @@ public class XMLUsuariosService {
         return true;
     }
 
-    // --- Buscar usuario ---
+    /**
+     * Busca un usuario por nombre y correo electrónico.
+     * Si lo encuentra, lo devuelve; si no, devuelve null.
+     * @param nombre Nombre del usuario.
+     * @param email Correo del usuario.
+     * @return El usuario encontrado o null si no existe.
+     */
     public Usuario buscarUsuario(String nombre, String email) {
         return cargarUsuarios().stream()
                 .filter(u -> u.getNombre().equalsIgnoreCase(nombre) && u.getEmail().equalsIgnoreCase(email))

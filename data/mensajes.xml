@@ -18,4 +18,15 @@
         <fecha>23/10/2025 19:30</fecha>
         <remitente>Pedro</remitente>
     </mensaje>
+    <mensaje>
+        <adjunto>
+            <nombre>proyectoFinalUd1_XML_Stream_2526.pdf</nombre>
+            <ruta>file:/C:/Users/David/Desktop/chatoffline/media/proyectoFinalUd1_XML_Stream_2526.pdf</ruta>
+            <tipo>pdf</tipo>
+        </adjunto>
+        <contenido></contenido>
+        <destinatario>Antonio</destinatario>
+        <fecha>24/10/2025 10:58</fecha>
+        <remitente>davicicito</remitente>
+    </mensaje>
 </conversacion>

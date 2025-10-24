@@ -12,7 +12,11 @@ import java.util.stream.Collectors;
 public class XMLMensajesService {
     private final File archivoMensajes = new File("data/mensajes.xml");
 
-    // 🔹 Cargar todos los mensajes desde XML (hecho público)
+    /**
+     * Carga la conversación completa desde el archivo mensajes.xml.
+     * Si el archivo no existe, devuelve una conversación vacía.
+     * @return un objeto Conversacion con todos los mensajes cargados del XML.
+     */
     public Conversacion cargarConversacion() {
         try {
             if (!archivoMensajes.exists()) return new Conversacion();
@@ -26,7 +30,11 @@ public class XMLMensajesService {
         }
     }
 
-    // 🔹 Guardar todos los mensajes en XML (hecho público)
+    /**
+     * Guarda todos los mensajes en el archivo mensajes.xml.
+     * Si no existe la carpeta "data", la crea automáticamente.
+     * @param conversacion La conversación completa que se quiere guardar.
+     */
     public void guardarConversacion(Conversacion conversacion) {
         try {
             archivoMensajes.getParentFile().mkdirs(); // crea "data/" si no existe
@@ -39,14 +47,25 @@ public class XMLMensajesService {
         }
     }
 
-    // 🔹 Enviar (guardar) un nuevo mensaje
+    /**
+     * Envía (guarda) un nuevo mensaje en el XML.
+     * Primero se cargan los mensajes que ya existen, se añade el nuevo,
+     * y después se vuelve a guardar todo el archivo.
+     * @param mensaje El mensaje que se va a guardar.
+     */
     public void enviarMensaje(Mensaje mensaje) {
         Conversacion conversacion = cargarConversacion();
         conversacion.getMensajes().add(mensaje);
         guardarConversacion(conversacion);
     }
 
-    // 🔹 Obtener los mensajes entre dos usuarios
+    /**
+     * Devuelve todos los mensajes que hay entre dos usuarios.
+     * Filtra los mensajes del XML para mostrar solo los de esa conversación.
+     * @param usuario1 Primer usuario.
+     * @param usuario2 Segundo usuario.
+     * @return Lista de mensajes entre ambos usuarios.
+     */
     public List<Mensaje> obtenerConversacion(String usuario1, String usuario2) {
         return cargarConversacion().getMensajes().stream()
                 .filter(m -> (m.getRemitente().equalsIgnoreCase(usuario1) && m.getDestinatario().equalsIgnoreCase(usuario2)) ||

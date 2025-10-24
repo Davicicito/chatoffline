@@ -23,11 +23,17 @@ public class RegistrarController {
     @FXML private Label lblMensaje;
 
     private final XMLUsuariosService servicioUsuarios = new XMLUsuariosService();
-    // Expresión regular para validar emails
+    // Expresión regular que se usa para comprobar si el email tiene un formato válido
     private static final Pattern EMAIL_REGEX = Pattern.compile(
             "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$"
     );
 
+    /**
+     * Método que se ejecuta cuando el usuario hace clic en el botón "Registrar".
+     * Comprueba que todos los campos estén llenos, valida el correo y la contraseña,
+     * y si todo está bien, registra al nuevo usuario en el sistema.
+     * @param event Evento del botón Registrar.
+     */
     @FXML
     private void registrarUsuario(ActionEvent event) {
         try {
@@ -62,8 +68,10 @@ public class RegistrarController {
     }
 
     /**
-     * Valida que el formato del email sea correcto usando una expresión regular.
-     * @throws InvalidEmailFormatException si el email no cumple con el formato estándar.
+     * Comprueba que el correo electrónico tenga un formato correcto.
+     * Si no lo tiene, lanza una excepción para avisar.
+     * @param email Correo introducido por el usuario.
+     * @throws InvalidEmailFormatException si el formato del correo no es válido.
      */
     private void validarEmail(String email) throws InvalidEmailFormatException {
         if (!EMAIL_REGEX.matcher(email).matches()) {
@@ -85,6 +93,11 @@ public class RegistrarController {
         }
     }
 
+    /**
+     * Permite volver a la pantalla de inicio de sesión desde el registro.
+     * Carga la vista del login y la muestra en la ventana actual.
+     * @param event Evento del botón o enlace "Volver al login".
+     */
     @FXML
     private void volverLogin(ActionEvent event) {
         try {
