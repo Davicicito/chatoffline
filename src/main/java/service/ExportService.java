@@ -23,13 +23,14 @@ public class ExportService {
      */
     private Conversacion cargarConversacion() {
         try {
-            if (!archivoMensajes.exists()) return new Conversacion();
+            if (!archivoMensajes.exists()) {
+                return new Conversacion();
+            }
 
             JAXBContext context = JAXBContext.newInstance(Conversacion.class);
             Unmarshaller unmarshaller = context.createUnmarshaller();
             return (Conversacion) unmarshaller.unmarshal(archivoMensajes);
         } catch (Exception e) {
-            System.out.println("Error al cargar mensajes desde XML: " + e.getMessage());
             return new Conversacion();
         }
     }
@@ -79,7 +80,6 @@ public class ExportService {
             }
             return true;
         } catch (IOException e) {
-            System.out.println("Error al exportar los datos del usuario: " + e.getMessage());
             return false;
         }
     }

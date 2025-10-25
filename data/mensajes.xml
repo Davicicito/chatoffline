@@ -29,4 +29,33 @@
         <fecha>24/10/2025 10:58</fecha>
         <remitente>davicicito</remitente>
     </mensaje>
+    <mensaje>
+        <adjunto>
+            <nombre>Captura de pantalla 2025-09-19 125242.png</nombre>
+            <ruta>file:/C:/Users/David/Desktop/chatoffline/media/Captura%20de%20pantalla%202025-09-19%20125242.png</ruta>
+            <tipo>imagen</tipo>
+        </adjunto>
+        <contenido></contenido>
+        <destinatario>Antonio</destinatario>
+        <fecha>25/10/2025 13:17</fecha>
+        <remitente>davicicito</remitente>
+    </mensaje>
+    <mensaje>
+        <contenido>Maria que tal como andas?</contenido>
+        <destinatario>Maria</destinatario>
+        <fecha>25/10/2025 13:18</fecha>
+        <remitente>davicicito</remitente>
+    </mensaje>
+    <mensaje>
+        <contenido>juanito viste el partido??</contenido>
+        <destinatario>Juan</destinatario>
+        <fecha>25/10/2025 13:18</fecha>
+        <remitente>davicicito</remitente>
+    </mensaje>
+    <mensaje>
+        <contenido>que pasa pedro que tal el trabajo</contenido>
+        <destinatario>Pedro</destinatario>
+        <fecha>25/10/2025 13:18</fecha>
+        <remitente>davicicito</remitente>
+    </mensaje>
 </conversacion>

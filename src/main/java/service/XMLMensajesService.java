@@ -25,7 +25,6 @@ public class XMLMensajesService {
             Unmarshaller unmarshaller = context.createUnmarshaller();
             return (Conversacion) unmarshaller.unmarshal(archivoMensajes);
         } catch (Exception e) {
-            System.out.println("Error al cargar mensajes: " + e.getMessage());
             return new Conversacion();
         }
     }

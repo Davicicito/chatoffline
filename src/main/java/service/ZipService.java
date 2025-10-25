@@ -42,8 +42,8 @@ public class ZipService {
 
             return true;
 
-        } catch (IOException e) {
-            System.out.println("Error al crear el archivo ZIP: " + e.getMessage());
+            } catch (IOException e) {
+                System.out.println("Error al crear el archivo ZIP: " + e.getMessage());
             return false;
         }
     }

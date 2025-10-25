@@ -20,7 +20,6 @@ public class AdjuntoService {
     public Adjunto guardarAdjunto(String rutaOriginal) {
         File archivoOriginal = new File(rutaOriginal);
         if (!archivoOriginal.exists()) {
-            System.out.println("El archivo no existe: " + rutaOriginal);
             return null;
         }
 
@@ -39,16 +38,11 @@ public class AdjuntoService {
             while ((bytesLeidos = fis.read(buffer)) != -1) {
                 fos.write(buffer, 0, bytesLeidos);
             }
-
-            System.out.println("Archivo guardado en: " + destino.getAbsolutePath());
-
             String tipo = obtenerTipoArchivo(destino.getName());
-            // ¡CORRECCIÓN CLAVE! Guardar la ruta como una URI válida.
             String uri = destino.toURI().toString();
             return new Adjunto(destino.getName(), uri, tipo);
 
         } catch (IOException e) {
-            System.out.println("Error al guardar adjunto: " + e.getMessage());
             return null;
         }
     }

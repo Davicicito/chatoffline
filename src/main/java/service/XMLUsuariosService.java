@@ -19,7 +19,9 @@ public class XMLUsuariosService {
      */
     public List<Usuario> cargarUsuarios() {
         try {
-            if (!archivoUsuarios.exists()) return new ArrayList<>();
+            if (!archivoUsuarios.exists()){
+                return new ArrayList<>();
+            }
 
             JAXBContext context = JAXBContext.newInstance(ListaUsuarios.class);
             Unmarshaller unmarshaller = context.createUnmarshaller();
@@ -27,7 +29,7 @@ public class XMLUsuariosService {
             return lista.getUsuarios();
 
         } catch (Exception e) {
-            System.out.println("Error al cargar usuarios: " + e.getMessage());            return new ArrayList<>();
+            return new ArrayList<>();
         }
     }
 
@@ -64,7 +66,7 @@ public class XMLUsuariosService {
 
         for (Usuario u : usuarios) {
             if (u.getNombre().equalsIgnoreCase(nuevoUsuario.getNombre()) || u.getEmail().equalsIgnoreCase(nuevoUsuario.getEmail())) {
-            return false; // Ya existe
+            return false;
             }
         }
 
