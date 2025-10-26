@@ -10,11 +10,11 @@ public class Mensaje {
     private String remitente;
     private String destinatario;
     private String contenido;
-    private String fecha;     // fecha guardada como texto (simple y efectivo)
-    private Adjunto adjunto;  // puede ser null si no hay archivo
+    private String fecha;
+    private Adjunto adjunto;
 
     public Mensaje() {
-        // Constructor vacío requerido por JAXB
+
     }
 
     public Mensaje(String remitente, String destinatario, String contenido, Adjunto adjunto) {

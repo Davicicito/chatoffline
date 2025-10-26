@@ -52,7 +52,6 @@ public class PerfilController {
             return;
         }
 
-        // 1. Crear un archivo CSV temporal
         File archivoCsvTemporal = new File("export_temp.csv");
         boolean exportado = exportService.exportarDatosUsuario(usuarioActual, archivoCsvTemporal);
 
@@ -62,16 +61,14 @@ public class PerfilController {
             return;
         }
 
-        // 2. Crear carpeta "exported" si no existe
         File carpetaExported = new File("exported");
         if (!carpetaExported.exists()) {
             carpetaExported.mkdirs();
         }
 
-        // 3. Crear el archivo ZIP dentro de la carpeta "exported"
+
         File archivoZipDestino = new File(carpetaExported, usuarioActual.getNombre() + "_backup.zip");
 
-        // 4. Crear el ZIP
         boolean exito = zipService.crearBackup(archivoZipDestino, archivoCsvTemporal, "media");
 
         if (exito) {
@@ -80,7 +77,6 @@ public class PerfilController {
             mostrarAlerta("Error", "No se pudo crear la copia de seguridad.", Alert.AlertType.ERROR);
         }
 
-        // 5. Borrar archivo temporal CSV
         archivoCsvTemporal.delete();
     }
 

@@ -32,7 +32,7 @@ public class LoginController {
     private void iniciarSesion(ActionEvent event) {
         String nombre = txtUsuario.getText().trim();
         String email = txtEmail.getText().trim();
-        String contraseña = txtContraseña.getText().trim(); // Campo añadido
+        String contraseña = txtContraseña.getText().trim();
 
         if (nombre.isEmpty() || email.isEmpty() || contraseña.isEmpty()) {
             lblMensaje.setText("Rellena todos los campos.");
@@ -45,10 +45,7 @@ public class LoginController {
         return;
         }
 
-        // Guardar usuario en la sesión
         Session.setCurrentUser(usuario);
-
-        // Inicio de sesión correcto → guardar usuario en sesión y abrir pantalla principal
         try {
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/mainchat.fxml"));

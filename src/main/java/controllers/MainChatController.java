@@ -140,7 +140,7 @@ public class MainChatController {
 
             if (tipo.equalsIgnoreCase("imagen")) {
                 try {
-                    // 🔹 Cargar directamente desde la URI guardada
+                    //Cargar directamente desde la URI guardada
                     Image image = new Image(ruta);
                     if (!image.isError()) {
                         ImageView img = new ImageView(image);

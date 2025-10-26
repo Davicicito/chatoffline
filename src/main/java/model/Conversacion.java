@@ -6,16 +6,10 @@ import java.util.List;
 
 @XmlRootElement(name = "conversacion")
 public class Conversacion {
-    private List<Mensaje> mensajes = new ArrayList<>();
+    private final List<Mensaje> mensajes = new ArrayList<>();
 
     @XmlElement(name = "mensaje")
     public List<Mensaje> getMensajes() {
         return mensajes;
-    }
-    public void setMensajes(List<Mensaje> mensajes) {
-        this.mensajes = mensajes;
-    }
-    public void addMensaje(Mensaje m) {
-        mensajes.add(m);
     }
 }

@@ -46,7 +46,6 @@ public class RegistrarController {
                 return;
             }
 
-            // --- VALIDACIONES CON EXCEPCIONES ---
             validarEmail(email);
             validarContrasena(contraseña);
 
@@ -61,7 +60,6 @@ public class RegistrarController {
             }
 
         } catch (InvalidEmailFormatException | PasswordException e) {
-            // Capturar nuestras excepciones personalizadas y mostrar el mensaje de error
             lblMensaje.setStyle("-fx-text-fill: red;");
             lblMensaje.setText("Error: " + e.getMessage());
         }

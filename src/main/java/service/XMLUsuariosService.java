@@ -40,7 +40,6 @@ public class XMLUsuariosService {
      */
     private void guardarUsuarios(List<Usuario> usuarios) {
         try {
-            // Asegurar que el directorio data/ existe
             File dir = archivoUsuarios.getParentFile();
             if (!dir.exists()) {
                  dir.mkdirs();

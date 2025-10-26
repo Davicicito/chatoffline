@@ -19,7 +19,9 @@ public class XMLMensajesService {
      */
     public Conversacion cargarConversacion() {
         try {
-            if (!archivoMensajes.exists()) return new Conversacion();
+            if (!archivoMensajes.exists()) {
+                return new Conversacion();
+            }
 
             JAXBContext context = JAXBContext.newInstance(Conversacion.class);
             Unmarshaller unmarshaller = context.createUnmarshaller();
@@ -36,7 +38,10 @@ public class XMLMensajesService {
      */
     public void guardarConversacion(Conversacion conversacion) {
         try {
-            archivoMensajes.getParentFile().mkdirs(); // crea "data/" si no existe
+            File dir = archivoMensajes.getParentFile();
+            if (!dir.exists()) {
+                dir.mkdirs();
+            }
             JAXBContext context = JAXBContext.newInstance(Conversacion.class);
             Marshaller marshaller = context.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);

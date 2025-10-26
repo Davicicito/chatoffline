@@ -13,7 +13,6 @@ public class App extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/login.fxml"));
         Scene scene = new Scene(loader.load());
 
-        // --- AÑADIR ICONO DE LA APLICACIÓN ---
         try (InputStream iconStream = getClass().getResourceAsStream("/icons/logo.jpg")) {
             if (iconStream != null) {
                 stage.getIcons().add(new Image(iconStream));

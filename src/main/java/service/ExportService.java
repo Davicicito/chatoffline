@@ -55,15 +55,13 @@ public class ExportService {
             return false;
         }
 
-        // Escribir los mensajes en formato CSV
         try (FileWriter writer = new FileWriter(archivoDestino)) {
 
-            // Escribir la cabecera del CSV
+
             writer.write("Fecha,Remitente,Destinatario,Contenido,Adjunto\n");
 
-            // Recorrer todos los mensajes del usuario
             for (Mensaje mensaje : mensajesDelUsuario) {
-                String adjunto = ""; // Valor por defecto (sin adjunto)
+                String adjunto = "";
 
                 if (mensaje.getAdjunto() != null) {
                     adjunto = mensaje.getAdjunto().getNombre();

@@ -5,9 +5,9 @@ import jakarta.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "adjunto")
 public class Adjunto {
 
-    private String nombre; // nombre del archivo
-    private String ruta;   // ubicación dentro de /media/
-    private String tipo;   // tipo de archivo (imagen, pdf, etc.)
+    private String nombre;
+    private String ruta;
+    private String tipo;
 
     public Adjunto() {}
 
